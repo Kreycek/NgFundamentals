@@ -1,0 +1,13 @@
+<div>
+    <h1>Upcoming Angular Events</h1>
+    {{a==b}}
+    <hr/>
+    <div class="well">
+        <h2>Hello World</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-5" *ngFor="let obj of events">
+            <event-thumbail #thumbnail [event]="obj"></event-thumbail>
+        </div>
+    </div>
+</div>
