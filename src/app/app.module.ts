@@ -26,6 +26,7 @@ import { CreateSessionComponent } from './events/create-session.component';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { DurationPipe } from './events/shared/duration.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { VoterService } from './events/shared/voter.service';
 
 let toastr:Toastr= window['toastr'];
 let jquery= window['$'];
@@ -59,7 +60,7 @@ let jquery= window['$'];
     TesteResolver,
     EventResolver,
     {provide:TOASTR_TOKEN, useValue:toastr},
-   
+       
     AuthService
   ],  
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

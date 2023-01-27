@@ -28,9 +28,9 @@
     <h3 style="margin:0">Sessions</h3>
   </div>
   <div class="col-md-7"  >
-    <div class="btn-group btn-group-sm" style="margin-right: 20px; margin-left: 20px;">
+    <div class="btn-group btn-group-sm" style="margin-right:20px; margin-left:20px">
       <button class="btn btn-default" [class.active]="sortBy==='name'" (click)="sortBy='name'">By Name</button>
-      <button class="btn btn-default" [class.active]="sortBy==='votes'" (click)="sortBy='votes'">By Name</button>
+      <button class="btn btn-default" [class.active]="sortBy==='votes'" (click)="sortBy='votes'">By Votes</button>
     </div>
     <button class="btn btn-default" [class.active]="filterBy==='all'" (click)="filterBy='all'">All</button>
     <button class="btn btn-default" [class.active]="filterBy==='Beginner'" (click)="filterBy='Beginner'">Beginner</button>
@@ -42,7 +42,7 @@
     <a (click)="addSession()">Add Session</a>
   </div>
 </div>
-    <session-list [sortBy]="sortBy" [filterBy]="filterBy" *ngIf="!addMode" [sessions]="event?.sessions"></session-list>
+    <session-list [eventId]="event.id || 0" [sortBy]="sortBy" [filterBy]="filterBy" *ngIf="!addMode" [sessions]="event.sessions"></session-list>
 
     <create-session (cancelADDSession)="cancelADDSession()" (saveNewSession)="saveNewSession($event)"></create-session>
   </div>

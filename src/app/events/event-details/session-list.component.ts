@@ -10,6 +10,7 @@ export class SessionListComponent implements OnChanges {
     @Input() sessions:ISession[] | undefined;
     @Input() filterBy:any;
     @Input() sortBy:string;
+    @Input() eventId: number;
     visibleSession:ISession[] | undefined;
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -19,11 +20,10 @@ export class SessionListComponent implements OnChanges {
         }
     }
 
-    filterSessions(filter:string) {
+    
 
-       
-        if(filter==='' || filter==="all") {
-            
+    filterSessions(filter:string) {       
+        if(filter==='' || filter==="all") {            
             this.visibleSession=this.sessions?.slice(0);
         }
         else {
@@ -31,7 +31,7 @@ export class SessionListComponent implements OnChanges {
             this.visibleSession=this.sessions?.filter(x=>{
                 return x.level.toLocaleLowerCase()===filter.toLocaleLowerCase();
             })
-        }
+          }
     }
 
    
