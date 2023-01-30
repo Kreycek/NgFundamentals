@@ -11,7 +11,7 @@ export interface IEvent{
         country:string
         },
     onlineUrl?:string,
-    sessions:ISession[]
+    sessions:ISession[] | []
     }
 
     export interface ISession{
@@ -21,5 +21,5 @@ export interface IEvent{
         duration:number,
         level:string,
         abstract:string,
-        voters:string[]
+        voters:string[] 
     }
