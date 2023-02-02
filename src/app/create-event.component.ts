@@ -19,21 +19,20 @@ export class CreateEventComponent {
   title = 'Criar Evento';
 
   newEvent:any;
-  public isDirty:boolean = true;
+  public isDirty = true;
   event:any;
 
   constructor(private route: Router, private eventService:EventService) {
+
   }
 
   saveEvent(formvalues:any) {
-    console.log('formvalues',formvalues);
+
+    console.log(formvalues);
     this.eventService.saveEvent(formvalues).subscribe((response)=>{
       this.isDirty=false;
-      this.route.navigate(['/events'])
+      //this.route.navigate(['/events'])
     });
-   
-    //
-   
   }
 
   cancel() {
@@ -54,7 +53,5 @@ export class CreateEventComponent {
       onlineUrl:'',
       imageUrl:''
     }
-  }
-
-  
+  }  
 }

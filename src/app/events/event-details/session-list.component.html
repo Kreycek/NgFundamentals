@@ -1,9 +1,16 @@
+<ng-container *ngIf="true">
+
 <div class="row" *ngFor="let session of visibleSession">
+
+  <div class="col-md-1" *ngIf="auth.isAuthenticated()">
+    <upvote (vote)="toggleVote(session)" [count]="session.voters.length" [voted]="userHasVoted(session)"></upvote>    
+  </div>
     <div class="col-md-10">
       <collapsible-well [title]="session.name">
         <div well-title>
+        
           {{session.name}}
-          <i *ngIf="session.voters?.length > 3" 
+          <i *ngIf="session.voters!=null ? session.voters.length>3 : false" 
             class="glyphicon glyphicon-fire"
             style="color:red"
             ></i>
@@ -18,3 +25,4 @@
       </collapsible-well>
     </div>
   </div>
+</ng-container>

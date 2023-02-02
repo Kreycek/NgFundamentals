@@ -48,7 +48,7 @@ export class CreateSessionComponent implements OnInit {
 
     saveSession(formValues:any) {
 
-        let session:ISession={
+        const session:ISession={
             id:0,
             name:formValues.name,
             duration:+formValues.duration,
@@ -68,7 +68,7 @@ export class CreateSessionComponent implements OnInit {
 
             if(!words) return {};
 
-            var invalidWords=words.map(w=>control.value.includes(w) ? w :null).filter(w=>w!=null);
+            const invalidWords=words.map(w=>control.value.includes(w) ? w :null).filter(w=>w!=null);
 
             return invalidWords && invalidWords.length> 0 ? {"restrictedWords": invalidWords.join(' ')} : {}
         }

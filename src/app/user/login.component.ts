@@ -11,7 +11,7 @@ import { AuthService } from "./auth.service";
         userName:string | undefined
         password:string | undefined
         mouseoverLogin:any
-        loginInvalid:boolean=false
+        loginInvalid=false
 
         constructor(
             private authService:AuthService,

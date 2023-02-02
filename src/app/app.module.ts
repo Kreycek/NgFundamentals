@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA,Injectable  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.component';
 import { Toastr, TOASTR_TOKEN } from './common/index';
 import { NavBarComponent } from './nav/navbar.component';
@@ -27,9 +27,11 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { DurationPipe } from './events/shared/duration.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { VoterService } from './events/shared/voter.service';
+import { upVoteComponent } from './events/event-details/upvote.component';
+import { LocationValidator } from './events/shared/location-validator.directive';
 
-let toastr:Toastr= window['toastr'];
-let jquery= window['$'];
+const toastr:Toastr= window['toastr'];
+const jquery= window['$'];
 
 @NgModule({
   imports: [
@@ -37,7 +39,7 @@ let jquery= window['$'];
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),   
+    RouterModule.forRoot(appRoutes, {preloadingStrategy:PreloadAllModules}),   
     HttpClientModule
   ],
   declarations: [
@@ -52,7 +54,9 @@ let jquery= window['$'];
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    upVoteComponent,
+    LocationValidator
   ],  
   providers: [
     EventService,

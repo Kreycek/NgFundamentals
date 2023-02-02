@@ -1,5 +1,7 @@
 import { DebugElement } from "@angular/core"
 import { ComponentFixture, TestBed } from "@angular/core/testing"
+import { By } from "@angular/platform-browser"
+import { CollapsibleWellComponent } from "src/app/common"
 import { AuthService } from "src/app/user/auth.service"
 import { DurationPipe } from "../shared/duration.pipe"
 import { ISession } from "../shared/event.model"
@@ -15,11 +17,14 @@ describe("SessionListComponentAAA", ()=> {
         debugEL: DebugElement           
 
         beforeEach(()=>{
-            component = new SessionListComponent(mockAuthService, mockVoterService);    
+            component = new SessionListComponent(mockAuthService, mockVoterService); 
+            mockAuthService = {isAuthenticated:()=>{}}   
                 TestBed.configureTestingModule({
                     declarations:[
                         SessionListComponent,
-                        DurationPipe
+                        DurationPipe,
+                        CollapsibleWellComponent,
+                        
                     ],
                     providers:[
                         {
@@ -36,6 +41,8 @@ describe("SessionListComponentAAA", ()=> {
                 component = fixture.componentInstance;
                 debugEL=fixture.debugElement;
                 element=fixture.nativeElement;
+                
+              
             })
 
             describe('initial display',()=>{
@@ -47,15 +54,21 @@ describe("SessionListComponentAAA", ()=> {
                             presenter:'Joe',
                             duration:1, 
                             level:'beginner', 
-                            abstract:'abstract'
+                            abstract:'abstract',
+                            voters:['John','Bob']
                         }
                     ]
 
+                    
                     component.filterBy='all';
                     component.sortBy='name';
                     component.eventId=4;
-                     component.ngOnChanges();
+                    component.ngOnChanges();
                     fixture.detectChanges();
+                    console.log('Jasmine',element.querySelectorAll('[well-title]'))
+                    expect(element.querySelector('[well-title]')?.textContent).toContain("Session 1")
+                    console.log('Jasime CSS',debugEL.query(By.css('[well-title]')).nativeElement.textContent)
+                    expect(debugEL.query(By.css('[well-title]')).nativeElement.textContent).toContain('Session 1');
                 })
             })
         })

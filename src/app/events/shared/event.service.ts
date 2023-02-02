@@ -1,5 +1,5 @@
-import { EventEmitter,Injectable } from '@angular/core';
-import {catchError, Observable, of, Subject} from 'rxjs'
+import { Injectable } from '@angular/core';
+import {catchError, Observable, of} from 'rxjs'
 import { IEvent, ISession } from './event.model';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
@@ -302,9 +302,7 @@ const EVENTS : IEvent[] = [
 
           console.log('eventService busca i',id);
 
-          const retorno = this.http.get<IEvent>('/api/events/' + id).pipe
-          (
-           
+          const retorno = this.http.get<IEvent>('/api/events/' + id).pipe(           
             catchError(this.handleError<IEvent>('getEvents'))
           )  ;
 
@@ -313,7 +311,7 @@ const EVENTS : IEvent[] = [
         }
 
         saveEvent(event:any) {
-          let options = {headers: new HttpHeaders({'Content-Type':'application/json'})};
+          const options = {headers: new HttpHeaders({'Content-Type':'application/json'})};
 
           return this.http.post<IEvent>('/api/events', event, options).pipe(
            
